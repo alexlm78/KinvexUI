@@ -146,4 +146,6 @@ El proyecto incluye una configuración de Nginx optimizada para SPAs en `nginx.c
 
 ## Licencia
 
-Este proyecto está bajo la licencia MIT.
+Este proyecto está bajo la licencia MIT. Ver el archivo [LICENSE](LICENSE) para más detalles.
+
+**Desarrollado por [Kreaker.dev](https://kreaker.dev)**
