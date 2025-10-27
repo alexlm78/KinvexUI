@@ -1,74 +1,74 @@
 # Kinvex UI - Frontend
 
-Interfaz de usuario del sistema de inventario Kinvex desarrollada con React y TypeScript.
+User interface for the Kinvex inventory system developed with React and TypeScript.
 
-## Tecnologías
+## Technologies
 
-- **React 18** - Framework de UI
-- **TypeScript** - Tipado estático
-- **Vite** - Build tool y dev server
-- **Material-UI (MUI)** - Componentes de UI
-- **React Router** - Navegación
-- **React Query** - Gestión de estado del servidor
-- **React Hook Form** - Manejo de formularios
-- **Axios** - Cliente HTTP
-- **Chart.js** - Gráficos y visualizaciones
+- **React 18** - UI Framework
+- **TypeScript** - Static typing
+- **Vite** - Build tool and dev server
+- **Material-UI (MUI)** - UI Components
+- **React Router** - Navigation
+- **React Query** - Server state management
+- **React Hook Form** - Form handling
+- **Axios** - HTTP client
+- **Chart.js** - Charts and visualizations
 - **Vitest** - Testing framework
 
-## Características
+## Features
 
-- Interfaz moderna y responsive
-- Gestión completa de inventario
-- Dashboard con métricas y gráficos
-- Formularios validados
-- Autenticación JWT
-- Notificaciones toast
-- Tema Material Design
+- Modern and responsive interface
+- Complete inventory management
+- Dashboard with metrics and charts
+- Validated forms
+- JWT authentication
+- Toast notifications
+- Material Design theme
 - PWA ready
 
-## Requisitos
+## Requirements
 
 - Node.js 18+
-- npm o yarn
+- npm or yarn
 
-## Instalación y Ejecución
+## Installation and Execution
 
-### Desarrollo Local
+### Local Development
 
-1. Clona el repositorio:
+1. Clone the repository:
 ```bash
 git clone <repository-url>
 cd KinvexUI
 ```
 
-2. Instala las dependencias:
+2. Install dependencies:
 ```bash
 npm install
-# o
+# or
 yarn install
 ```
 
-3. Configura las variables de entorno:
+3. Configure environment variables:
 ```bash
 cp .env.example .env
 ```
 
-4. Ejecuta el servidor de desarrollo:
+4. Run the development server:
 ```bash
 npm run dev
-# o
+# or
 yarn dev
 ```
 
-La aplicación estará disponible en `http://localhost:5173`
+The application will be available at `http://localhost:5173`
 
-### Producción
+### Production
 
 ```bash
-# Build para producción
+# Build for production
 npm run build
 
-# Preview del build
+# Preview the build
 npm run preview
 ```
 
@@ -79,73 +79,73 @@ docker build -t kinvex-ui .
 docker run -p 80:80 kinvex-ui
 ```
 
-## Scripts Disponibles
+## Available Scripts
 
-- `npm run dev` - Servidor de desarrollo
-- `npm run build` - Build para producción
-- `npm run preview` - Preview del build
-- `npm run lint` - Linting con ESLint
-- `npm run test` - Ejecutar tests
-- `npm run test:watch` - Tests en modo watch
+- `npm run dev` - Development server
+- `npm run build` - Production build
+- `npm run preview` - Build preview
+- `npm run lint` - ESLint linting
+- `npm run test` - Run tests
+- `npm run test:watch` - Tests in watch mode
 
-## Estructura del Proyecto
+## Project Structure
 
 ```
 src/
-├── components/          # Componentes reutilizables
-├── pages/              # Páginas/vistas principales
+├── components/          # Reusable components
+├── pages/              # Main pages/views
 ├── hooks/              # Custom hooks
-├── services/           # Servicios API
-├── types/              # Definiciones TypeScript
-├── utils/              # Utilidades
+├── services/           # API services
+├── types/              # TypeScript definitions
+├── utils/              # Utilities
 ├── contexts/           # React contexts
-├── assets/             # Recursos estáticos
-└── test/               # Configuración de tests
+├── assets/             # Static resources
+└── test/               # Test configuration
 ```
 
-## Funcionalidades Principales
+## Main Features
 
-- **Dashboard**: Métricas y gráficos del inventario
-- **Productos**: CRUD completo de productos
-- **Categorías**: Gestión de categorías
-- **Proveedores**: Administración de proveedores
-- **Movimientos**: Registro de entradas y salidas
-- **Reportes**: Generación y descarga de reportes
-- **Usuarios**: Gestión de usuarios y permisos
+- **Dashboard**: Inventory metrics and charts
+- **Products**: Complete product CRUD
+- **Categories**: Category management
+- **Suppliers**: Supplier administration
+- **Movements**: Entry and exit logging
+- **Reports**: Report generation and download
+- **Users**: User and permission management
 
 ## Testing
 
 ```bash
-# Ejecutar tests una vez
+# Run tests once
 npm run test
 
-# Tests en modo watch
+# Tests in watch mode
 npm run test:watch
 ```
 
-## Configuración
+## Configuration
 
-### Variables de Entorno
+### Environment Variables
 
 ```env
 VITE_API_BASE_URL=http://localhost:8080/api
 VITE_APP_NAME=Kinvex
 ```
 
-### Nginx (Producción)
+### Nginx (Production)
 
-El proyecto incluye una configuración de Nginx optimizada para SPAs en `nginx.conf`.
+The project includes an optimized Nginx configuration for SPAs in `nginx.conf`.
 
-## Contribución
+## Contributing
 
-1. Fork el proyecto
-2. Crea una rama para tu feature (`git checkout -b feature/nueva-funcionalidad`)
-3. Commit tus cambios (`git commit -am 'Añade nueva funcionalidad'`)
-4. Push a la rama (`git push origin feature/nueva-funcionalidad`)
-5. Crea un Pull Request
+1. Fork the project
+2. Create a feature branch (`git checkout -b feature/new-feature`)
+3. Commit your changes (`git commit -am 'Add new feature'`)
+4. Push to the branch (`git push origin feature/new-feature`)
+5. Create a Pull Request
 
-## Licencia
+## License
 
-Este proyecto está bajo la licencia MIT. Ver el archivo [LICENSE](LICENSE) para más detalles.
+This project is under the MIT license. See the [LICENSE](LICENSE) file for more details.
 
-**Desarrollado por [Kreaker.dev](https://kreaker.dev)**
+**Developed by [Kreaker.dev](https://kreaker.dev)**
