@@ -3,6 +3,7 @@ import { BrowserRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
 import { ThemeProvider } from "@/contexts/ThemeContext";
+import { AuthProvider } from "@/contexts/AuthContext";
 import { AppRoutes } from "@/routes";
 
 const queryClient = new QueryClient({
@@ -19,20 +20,22 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
-        <CssBaseline />
-        <BrowserRouter>
-          <AppRoutes />
-          <Toaster
-            position="top-right"
-            toastOptions={{
-              duration: 4000,
-              style: {
-                background: "var(--toast-bg)",
-                color: "var(--toast-color)",
-              },
-            }}
-          />
-        </BrowserRouter>
+        <AuthProvider>
+          <CssBaseline />
+          <BrowserRouter>
+            <AppRoutes />
+            <Toaster
+              position="top-right"
+              toastOptions={{
+                duration: 4000,
+                style: {
+                  background: "var(--toast-bg)",
+                  color: "var(--toast-color)",
+                },
+              }}
+            />
+          </BrowserRouter>
+        </AuthProvider>
       </ThemeProvider>
     </QueryClientProvider>
   );

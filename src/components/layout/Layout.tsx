@@ -13,6 +13,7 @@ import {
   Brightness7 as LightModeIcon,
 } from '@mui/icons-material';
 import { useTheme } from '@/contexts/ThemeContext';
+import { UserProfile } from '@/components/auth';
 import { Sidebar } from './Sidebar';
 
 const DRAWER_WIDTH = 240;
@@ -35,15 +36,19 @@ export const Layout: React.FC = () => {
           <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
             Kinvex - Sistema de Inventario
           </Typography>
-          <IconButton
-            size="large"
-            edge="end"
-            color="inherit"
-            onClick={toggleTheme}
-            aria-label="toggle theme"
-          >
-            {isDarkMode ? <LightModeIcon /> : <DarkModeIcon />}
-          </IconButton>
+
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <IconButton
+              size="large"
+              color="inherit"
+              onClick={toggleTheme}
+              aria-label="toggle theme"
+            >
+              {isDarkMode ? <LightModeIcon /> : <DarkModeIcon />}
+            </IconButton>
+
+            <UserProfile />
+          </Box>
         </Toolbar>
       </AppBar>
 

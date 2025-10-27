@@ -259,6 +259,9 @@ psd
 thumb
 sketch
 
+### dotenv ###
+.env
+
 # Kreaker specific files
 CLAUDE.md
 WARP.md
