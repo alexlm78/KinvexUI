@@ -34,12 +34,32 @@ class HttpClient {
       }
     );
 
-    // Response interceptor to handle common errors
+    // Response interceptor to handle common errors and token refresh
     this.client.interceptors.response.use(
       (response: AxiosResponse) => {
         return response;
       },
-      (error: AxiosError) => {
+      async (error: AxiosError) => {
+        const originalRequest = error.config as AxiosRequestConfig & { _retry?: boolean };
+
+        // Handle 401 errors with token refresh
+        if (error.response?.status === 401 && !originalRequest._retry) {
+          originalRequest._retry = true;
+
+          try {
+            const newToken = await this.refreshToken();
+            if (newToken && originalRequest.headers) {
+              originalRequest.headers.Authorization = `Bearer ${newToken}`;
+              return this.client(originalRequest);
+            }
+          } catch (refreshError) {
+            // Refresh failed, redirect to login
+            this.clearAuthToken();
+            window.location.href = '/login';
+            return Promise.reject(refreshError);
+          }
+        }
+
         this.handleResponseError(error);
         return Promise.reject(error);
       }

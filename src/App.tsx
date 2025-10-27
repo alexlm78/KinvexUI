@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import { AuthProvider } from "@/contexts/AuthContext";
+import { SessionTimeoutWarning } from "@/components/auth";
 import { AppRoutes } from "@/routes";
 
 const queryClient = new QueryClient({
@@ -24,6 +25,7 @@ function App() {
           <CssBaseline />
           <BrowserRouter>
             <AppRoutes />
+            <SessionTimeoutWarning />
             <Toaster
               position="top-right"
               toastOptions={{

@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { User } from '@/types/entities';
+import { User, UserRole } from '@/types/entities';
 import { LoginRequest, AuthResponse } from '@/types/api';
 import { authService } from '@/services/api/authService';
 import toast from 'react-hot-toast';
@@ -11,6 +11,8 @@ interface AuthContextType {
   login: (credentials: LoginRequest) => Promise<boolean>;
   logout: () => Promise<void>;
   refreshToken: () => Promise<boolean>;
+  hasRole: (role: UserRole) => boolean;
+  hasAnyRole: (roles: UserRole[]) => boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -132,12 +134,26 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       return true;
     } catch (error) {
       console.error('Token refresh error:', error);
+      // Clear invalid tokens
+      localStorage.removeItem('authToken');
+      localStorage.removeItem('refreshToken');
+      localStorage.removeItem('currentUser');
       return false;
     }
   };
 
   const refreshToken = async (): Promise<boolean> => {
     return handleRefreshToken();
+  };
+
+  const hasRole = (role: UserRole): boolean => {
+    if (!user) return false;
+    return checkUserRole(user.role, role);
+  };
+
+  const hasAnyRole = (roles: UserRole[]): boolean => {
+    if (!user) return false;
+    return roles.some(role => checkUserRole(user.role, role));
   };
 
   const value: AuthContextType = {
@@ -147,6 +163,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     login,
     logout,
     refreshToken,
+    hasRole,
+    hasAnyRole,
   };
 
   return (
@@ -154,6 +172,20 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       {children}
     </AuthContext.Provider>
   );
+};
+
+/**
+ * Check if user has the required role or higher
+ */
+const checkUserRole = (userRole: UserRole, requiredRole: UserRole): boolean => {
+  const roleHierarchy = {
+    [UserRole.VIEWER]: 1,
+    [UserRole.OPERATOR]: 2,
+    [UserRole.MANAGER]: 3,
+    [UserRole.ADMIN]: 4,
+  };
+
+  return roleHierarchy[userRole] >= roleHierarchy[requiredRole];
 };
 
 export const useAuth = (): AuthContextType => {
