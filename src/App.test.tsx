@@ -5,6 +5,8 @@ import App from './App';
 describe('App', () => {
   it('renders without crashing', () => {
     render(<App />);
-    expect(screen.getByText('Kinvex')).toBeInTheDocument();
+    // The app should render either the loading spinner or the login page
+    // Since authentication is loading initially, we check for the loading indicator
+    expect(screen.getByRole('progressbar')).toBeInTheDocument();
   });
 });
